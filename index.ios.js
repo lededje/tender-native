@@ -5,17 +5,16 @@
  */
 
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, StyleSheet, Text } from 'react-native';
 
 import Router from 'react-native-simple-router';
 
-import LoginPage from './App/Pages/Login';
+import Login from './App/Pages/Login';
+import Feed from './App/Pages/Feed';
 
 const firstRoute = {
-  component: LoginPage,
-  noStatusBar: true,
-  hideNavigationBar: true,
-  trans: true
+  name: '',
+  component: Login,
 };
 
 class TenderApp extends Component {
@@ -23,9 +22,24 @@ class TenderApp extends Component {
     return (
       <Router
         firstRoute={firstRoute}
+        headerStyle={styles.header}
+        backButtonComponent={backButtonComponent}
       />
     );
   }
 };
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#fc4e61',
+  },
+  back: {
+    fontSize: 40,
+    color: '#fff',
+    marginLeft: 5
+  }
+});
+
+const backButtonComponent = () => <Text style={styles.back}>×</Text>
 
 AppRegistry.registerComponent('tender', () => TenderApp);

@@ -10,10 +10,11 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Image
+  Image,
+  Navigator
 } from 'react-native';
 
-import MainFeedPage from './MainFeed';
+import Feed from './Feed';
 
 class LoginPage extends Component {
   constructor (props) {
@@ -39,8 +40,9 @@ class LoginPage extends Component {
   login (...args) {
     console.log('Button pressed');
     this.props.toRoute({
-      name: 'Main Page',
-      component: MainFeedPage
+      name: 'tender',
+      component: Feed,
+      sceneConfig: Navigator.SceneConfigs.PushFromRight
     });
   }
 
