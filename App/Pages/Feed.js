@@ -23,16 +23,22 @@ class NoMoreCards extends Component {
   }
 }
 
+
 const Cards = [
-  {name: 'Babe', image: 'https://likeminded.io/pig.png'},
-  {name: 'Piglet', image: 'https://likeminded.io/pig.png'},
-  {name: 'Gouger', image: 'https://likeminded.io/pig.png'},
-  {name: 'Snouter', image: 'https://likeminded.io/pig.png'},
-  {name: 'Rooter', image: 'https://likeminded.io/pig.png'},
-  {name: 'Tusker', image: 'https://likeminded.io/pig.png'},
-  {name: 'Ace', image: 'https://likeminded.io/pig.png'},
-  {name: 'Hamhock', image: 'https://likeminded.io/pig.png'},
-  {name: 'Squigley', image: 'https://likeminded.io/pig.png'},
+  {name: 'Babe', image: 'https://likeminded.io/pigs/babe.jpg'},
+  {name: 'Cesar', image: 'https://likeminded.io/pigs/cesar.jpg'},
+  {name: 'Jon Hamm', image: 'https://likeminded.io/pigs/jon-hamm.jpg'},
+  {name: 'Lorenzo', image: 'https://likeminded.io/pigs/lorenzo.jpg'},
+  {name: 'Pattie', image: 'https://likeminded.io/pigs/pattie.jpg'},
+  {name: 'Sciutto', image: 'https://likeminded.io/pigs/sciutto.jpg'},
+  {name: 'Snowball', image: 'https://likeminded.io/pigs/snowball.jpg'},
+  {name: 'Carnita', image: 'https://likeminded.io/pigs/carnita.jpg'},
+  {name: 'Henry', image: 'https://likeminded.io/pigs/henry.jpg'},
+  {name: 'King', image: 'https://likeminded.io/pigs/king.jpg'},
+  {name: 'Marco', image: 'https://likeminded.io/pigs/marco.jpg'},
+  {name: 'Percy', image: 'https://likeminded.io/pigs/percy.jpg'},
+  {name: 'Sherry', image: 'https://likeminded.io/pigs/sherry.jpg'},
+  {name: 'Suse', image: 'https://likeminded.io/pigs/suse.jpg'}
 ]
 
 export default class Feed extends Component {
