@@ -1,33 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component, PropTypes } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Image,
-  Navigator
-} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableHighlight, Image, StyleSheet, Navigator } from 'react-native';
 
 import Feed from './Feed';
 
-class LoginPage extends Component {
+export default class Match extends Component {
+
   constructor (props) {
     super(props);
     this.state = { pressStatus: false };
     this._onHideUnderlay = this._onHideUnderlay.bind(this);
     this._onShowUnderlay = this._onShowUnderlay.bind(this);
-    this.login = this.login.bind(this);
+    this.back = this.back.bind(this);
   }
-
-  static propTypes = {
-    toRoute: PropTypes.func.isRequired
-  };
 
   _onHideUnderlay () {
     this.setState({ pressStatus: false });
@@ -37,34 +21,40 @@ class LoginPage extends Component {
     this.setState({ pressStatus: true });
   }
 
-  login (...args) {
-    this.props.toRoute({
-      name: 'tender',
-      component: Feed,
-      sceneConfig: Navigator.SceneConfigs.PushFromRight
-    });
+  back () {
+    this.props.toBack();
   }
 
   render () {
+
     const { pressStatus } = this.state;
+
     return (
+
       <View style={styles.container}>
+        
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../assets/logo-heart.png')} />
         </View>
+
+        <View style={styles.matchContainer}>
+          <Image style={styles.matchImage} source={require('../assets/user.png')} />
+          <Image style={styles.matchImage} source={{uri: this.props.image}} />
+        </View>
+        
         <View style={styles.mainTextContainer}>
-          <Text style={styles.mainText}>tender</Text>
+          <Text style={styles.mainText}>You've Pulled Pork!</Text>
         </View>
 
         <TouchableHighlight
           onHideUnderlay={this._onHideUnderlay}
           onShowUnderlay={this._onShowUnderlay}
           style={pressStatus ? styles.buttonPress : styles.button}
-          onPress={this.login}
+          onPress={this.back}
           underlayColor='#ffffff'>
           <Text
             style={pressStatus ? styles.buttonTextPress : styles.buttonText}>
-            Log In
+            Keep Porking
           </Text>
         </TouchableHighlight>
       </View>
@@ -73,13 +63,31 @@ class LoginPage extends Component {
 }
 
 const styles = StyleSheet.create({
+
+  matchContainer: {
+    paddingTop: 5,
+    height: 150,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  matchImage: {
+    flex: 1,
+    height: 150,
+    width: 150,
+    resizeMode: 'cover',
+    borderColor: '#fff',
+    borderWidth: 5,
+    borderRadius: 75,
+    margin: 10
+  },
+
   logo: {
     flex: 1,
     resizeMode: 'contain'
   },
   logoContainer: {
     paddingTop: 5,
-    height: 220,
+    height: 150,
     alignItems: 'center'
   },
   container: {
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
   mainText: {
     fontFamily: 'CircularStd-Bold',
     color: '#fff',
-    fontSize: 50
+    fontSize: 35
   },
   button: {
     // height: 45,
@@ -141,5 +149,3 @@ const styles = StyleSheet.create({
     color: '#fc4e61'
   }
 });
-
-export default LoginPage;

@@ -10,7 +10,6 @@ import { AppRegistry, StyleSheet, Text } from 'react-native';
 import Router from 'react-native-simple-router';
 
 import Login from './App/Pages/Login';
-import Feed from './App/Pages/Feed';
 
 const firstRoute = {
   name: '',

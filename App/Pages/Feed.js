@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { Text, StyleSheet, View, Image, Navigator } from 'react-native';
 import SwipeCards from './SwipeCards';
+
+import Match from './Match';
 
 class Card extends Component {
   render() {
     return (
-      <View style={styles.card}>
-        <Image style={styles.thumbnail} source={{uri: this.props.image}} />
+      <View style={styles.card} dataUrl={this.props.image}>
+        <Image style={styles.thumbnail} ref="image" source={{uri: this.props.image}} />
         <Text style={styles.text}>{this.props.name}</Text>
       </View>
     )
@@ -22,7 +24,6 @@ class NoMoreCards extends Component {
     )
   }
 }
-
 
 const Cards = [
   {name: 'Babe', image: 'https://likeminded.io/pigs/babe.jpg'},
@@ -52,7 +53,16 @@ export default class Feed extends Component {
   }
 
   handleYup (card) {
-    console.log("yup")
+
+    if(Math.floor(Math.random()*100) % 3 === 0) {
+      this.props.toRoute({
+        name: '',
+        component: Match,
+        sceneConfig: Navigator.SceneConfigs.FadeAndroid,
+        passProps: card
+      });
+    }
+
   }
 
   handleNope (card) {
@@ -71,7 +81,7 @@ export default class Feed extends Component {
         showNope={true}
         yupText={'Swine & Dine'}
 
-        handleYup={this.handleYup}
+        handleYup={this.handleYup.bind(this)}
         handleNope={this.handleNope}
       />
     )
