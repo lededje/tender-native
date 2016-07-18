@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     height: 150,
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   matchImage: {
     flex: 1,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderWidth: 5,
     borderRadius: 75,
-    margin: 10
+    margin: 5
   },
 
   logo: {
