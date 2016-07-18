@@ -45,6 +45,7 @@ class SwipeCards extends Component {
   }
 
   componentWillMount() {
+
     this._panResponder = PanResponder.create({
       onMoveShouldSetResponderCapture: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
@@ -118,17 +119,17 @@ class SwipeCards extends Component {
     let [translateX, translateY] = [pan.x, pan.y];
 
     let rotate = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: ["-30deg", "0deg", "30deg"]});
-    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.5, 1, 0.5]});
+    let opacity = pan.x.interpolate({inputRange: [-200, 0, 200], outputRange: [0.8, 1, 0.8]});
     let scale = enter;
 
     let animatedCardstyles = {transform: [{translateX}, {translateY}, {rotate}, {scale}], opacity};
 
     let yupOpacity = pan.x.interpolate({inputRange: [0, 150], outputRange: [0, 1]});
-    let yupScale = pan.x.interpolate({inputRange: [0, 150], outputRange: [0.5, 1], extrapolate: 'clamp'});
+    let yupScale = pan.x.interpolate({inputRange: [0, 150], outputRange: [0.01, 0.35], extrapolate: 'clamp'});
     let animatedYupStyles = {transform: [{scale: yupScale}], opacity: yupOpacity}
 
     let nopeOpacity = pan.x.interpolate({inputRange: [-150, 0], outputRange: [1, 0]});
-    let nopeScale = pan.x.interpolate({inputRange: [-150, 0], outputRange: [1, 0.5], extrapolate: 'clamp'});
+    let nopeScale = pan.x.interpolate({inputRange: [-150, 0], outputRange: [0.35, 0.01], extrapolate: 'clamp'});
     let animatedNopeStyles = {transform: [{scale: nopeScale}], opacity: nopeOpacity}
 
     return (
@@ -141,11 +142,10 @@ class SwipeCards extends Component {
             )
             : this.renderNoMoreCards() }
 
-
         { this.props.showNope
           ? (
-            <Animated.View style={[styles.nope, animatedNopeStyles]}>
-              <Text style={styles.nopeText}>What a Boar</Text>
+            <Animated.View style={[styles.overlayContainer, animatedNopeStyles]}>
+              <Image style={styles.overlay} source={require('../assets/noOverlay.png')} resizeMode="contain"/>
             </Animated.View>
             )
           : null
@@ -153,11 +153,12 @@ class SwipeCards extends Component {
 
         { this.props.showYup
           ? (
-            <Animated.View style={[styles.yup, animatedYupStyles]}>
-              <Text style={styles.yupText}>Swine & Dine</Text>
+            <Animated.View style={[styles.overlayContainer, animatedYupStyles]}>
+              <Image style={styles.overlay} source={require('../assets/yesOverlay.png')} resizeMode="contain"/>
             </Animated.View>
           )
           : null }
+
 
       </View>
     );
@@ -189,33 +190,16 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  yup: {
-    borderColor: 'green',
-    borderWidth: 2,
+  overlayContainer: {
     position: 'absolute',
-    padding: 20,
-    bottom: 20,
-    borderRadius: 5,
-    right: 20,
-    backgroundColor: '#fff'
+    top:0,
+    left:0,
+    right:0,
+    bottom: 0,
+    alignItems: 'center'
   },
-  yupText: {
-    fontSize: 16,
-    color: 'green',
-  },
-  nope: {
-    borderColor: 'red',
-    borderWidth: 2,
-    position: 'absolute',
-    bottom: 20,
-    padding: 20,
-    borderRadius: 5,
-    left: 20,
-    backgroundColor: '#fff'
-  },
-  nopeText: {
-    fontSize: 16,
-    color: 'red',
+  overlay: {
+    flex: 1
   }
 });
 
