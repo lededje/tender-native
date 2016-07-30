@@ -98,7 +98,6 @@ export default React.createClass({
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    borderRadius: 5,
     overflow: 'hidden',
     borderColor: 'grey',
     backgroundColor: 'white',

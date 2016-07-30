@@ -96,12 +96,14 @@ export default class Feed extends Component {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'stretch',
-    borderRadius: 5,
-    overflow: 'hidden',
     borderColor: 'grey',
     backgroundColor: 'white',
-    borderWidth: 1,
-    elevation: 1,
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 5,
+    }
   },
   thumbnail: {
     flex: 1,

@@ -177,11 +177,10 @@ SwipeCards.propTypes = {
 };
 
 SwipeCards.defaultProps = {
-  loop: false,
+  loop: true,
   showYup: true,
   showNope: true
 };
-
 
 var styles = StyleSheet.create({
   container: {
