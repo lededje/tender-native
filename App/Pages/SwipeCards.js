@@ -2,7 +2,7 @@
 'use strict';
 import React, { Component } from 'react';
 
-import { StyleSheet, Text, View, Animated, PanResponder, Image} from 'react-native';
+import { StyleSheet, Text, View, Animated, PanResponder, Image, TouchableHighlight} from 'react-native';
 import clamp from 'clamp';
 
 var SWIPE_THRESHOLD = 120;
@@ -137,7 +137,11 @@ class SwipeCards extends Component {
         { this.state.card
             ? (
             <Animated.View style={[styles.card, animatedCardstyles]} {...this._panResponder.panHandlers}>
-              {this.renderCard(this.state.card)}
+              <TouchableHighlight onPress={this.props.handlePress.bind(this, this.state.card)}>
+                <View>
+                  {this.renderCard(this.state.card)}
+                </View>
+              </TouchableHighlight>
             </Animated.View>
             )
             : this.renderNoMoreCards() }

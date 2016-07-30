@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, StyleSheet, Navigator, ScrollView } from 'react-native';
+import { View, Text, TouchableHighlight, Image, StyleSheet, Navigator, ScrollView, Dimensions } from 'react-native';
 
 import Feed from './Feed';
 
@@ -11,19 +11,59 @@ export default class Match extends Component {
 
   render () {
 
+    var {height, width} = Dimensions.get('window');
+
     return (
-
-      <View style={styles.container}>            
-        <ScrollView>
-          <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo est aspernatur, repudiandae provident dolorum autem qui eveniet debitis minima odio, atque eum aliquid natus beatae deleniti quas at laudantium asperiores dolorem a officia voluptates. Accusamus ipsum iusto id blanditiis obcaecati optio atque rem, corrupti doloribus nesciunt sit illum ipsam, enim, voluptates quasi nostrum consectetur fugiat deleniti, facilis dignissimos dolorem vel? Reprehenderit nihil eum, praesentium, incidunt soluta consequatur rerum distinctio minima, iusto quibusdam, exercitationem saepe odit commodi? Sequi neque repellat nemo voluptatum, ullam ipsa officiis consectetur optio accusamus dolorum consequatur obcaecati id iusto fugit, culpa molestiae, maiores. Ipsam voluptatibus, nemo distinctio!</Text>
+      <View>
+        <Image style={styles.image} source={{uri: this.props.image}} />
+        <ScrollView style={[styles.container, {
+            height: height - 250 - 64
+          }]}>
+          <View style={styles.row}>
+            <View style={[styles.half]}>
+              <Text style={[styles.font, styles.name]}>{this.props.name}</Text>
+            </View>
+            <View style={[styles.half]}>
+              <Text style={[styles.font, styles.textRight, styles.location]}>{'Riverside Farm'}</Text>
+              <Text style={[styles.font, styles.textRight, styles.distance]}>{this.props.distance}</Text>
+            </View>
+          </View>
+          <Text>{this.props.description + '\n'}</Text>
         </ScrollView>
-
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
-
+  image: {
+    height: 250,
+  },
+  row: {
+    flexDirection: 'row',
+    paddingBottom: 15
+  },
+  half: {
+    flex: 1,
+  },
+  name: {
+    fontSize: 32,
+  },
+  textRight: {
+    textAlign: 'right'
+  },
+  location: {
+    fontSize: 16,
+  },
+  distance: {
+    fontSize: 16,
+    opacity: 0.6,
+  },
+  container: {
+    padding: 20,
+    flex: 1,
+  },
+  font: {
+    fontFamily: 'CircularStd-Medium',
+  }
 });
